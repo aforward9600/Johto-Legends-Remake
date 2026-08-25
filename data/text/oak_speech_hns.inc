@@ -1,9 +1,9 @@
 gText_Oak_Welcome::
 	.string "Hi! Sorry to keep you waiting!\p"
 	.string "Welcome to the world of POKéMON!\p"
-	.string "My name is OAK.\p"
-	.string "People call me the POKéMON\n"
-	.string "PROFESSOR.\p"
+	.string "My name is Oak.\p"
+	.string "People call me the Pokémon\n"
+	.string "Professor.\p"
 	.string "$"
 
 gText_Oak_Pokemon::
@@ -13,13 +13,13 @@ gText_Oak_Pokemon::
 
 gText_Oak_MainSpeech::
 	.string "This world is widely inhabited by\n"
-	.string "creatures known as POKéMON.\p"
+	.string "creatures known as Pokémon.\p"
 	.string "People and POKéMON live together,\n"
 	.string "by supporting each other.\p"
-	.string "Some people play with POKéMON,\n"
+	.string "Some people play with Pokémon,\n"
 	.string "some battle with them. \p"
 	.string "But we don't know everything about\n"
-	.string "POKéMON yet. \p"
+	.string "Pokémon yet. \p"
 	.string "There are still many mysteries\n"
 	.string "to solve. That's why I study\l"
 	.string "POKéMON every day.\p"
