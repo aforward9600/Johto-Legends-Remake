@@ -82,9 +82,52 @@ static const u8 sIcefallCaveMapPreviewTilemap[] = INCBIN_U8("graphics/map_previe
 static const u8 sAlteringCaveMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/altering_cave/tiles.gbapal");
 static const u8 sAlteringCaveMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/altering_cave/tiles.4bpp.smol");
 static const u8 sAlteringCaveMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/altering_cave/tilemap.bin.smolTM");
+
+static const u8 sBurnedTowerMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/burned_tower/tiles.gbapal");
+static const u8 sBurnedTowerMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/burned_tower/tiles.4bpp.smol");
+static const u8 sBurnedTowerMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/burned_tower/tilemap.bin.smolTM");
+static const u8 sDarkCaveMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/dark_cave/route_31/tiles.gbapal");
+static const u8 sDarkCaveMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/dark_cave/route_31/tiles.4bpp.smol");
+static const u8 sDarkCaveMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/dark_cave/route_31/tilemap.bin.smolTM");
+static const u8 sDragonDenMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/dragon_den/tiles.gbapal");
+static const u8 sDragonDenMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/dragon_den/tiles.4bpp.smol");
+static const u8 sDragonDenMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/dragon_den/tilemap.bin.smolTM");
+static const u8 sIcePathMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/ice_path/tiles.gbapal");
+static const u8 sIcePathMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/ice_path/tiles.4bpp.smol");
+static const u8 sIcePathMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/ice_path/tilemap.bin.smolTM");
+static const u8 sIlexForestMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/ilex_forest/day/tiles.gbapal");
+static const u8 sIlexForestMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/ilex_forest/day/tiles.4bpp.smol");
+static const u8 sIlexForestMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/ilex_forest/day/tilemap.bin.smolTM");
+static const u8 sMtMortarMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/mt_mortar/day/tiles.gbapal");
+static const u8 sMtMortarMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/mt_mortar/day/tiles.4bpp.smol");
+static const u8 sMtMortarMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/mt_mortar/day/tilemap.bin.smolTM");
+static const u8 sMtSilverMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/mt_silver/tiles.gbapal");
+static const u8 sMtSilverMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/mt_silver/tiles.4bpp.smol");
+static const u8 sMtSilverMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/mt_silver/tilemap.bin.smolTM");
+static const u8 sNationalParkMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/national_park/day/tiles.gbapal");
+static const u8 sNationalParkMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/national_park/day/tiles.4bpp.smol");
+static const u8 sNationalParkMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/national_park/day/tilemap.bin.smolTM");
+static const u8 sRuinsOfAlphMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/ruins_of_alph/tiles.gbapal");
+static const u8 sRuinsOfAlphMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/ruins_of_alph/tiles.4bpp.smol");
+static const u8 sRuinsOfAlphMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/ruins_of_alph/tilemap.bin.smolTM");
+static const u8 sSlowpokeWellMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/slowpoke_well/tiles.gbapal");
+static const u8 sSlowpokeWellMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/slowpoke_well/tiles.4bpp.smol");
+static const u8 sSlowpokeWellMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/slowpoke_well/tilemap.bin.smolTM");
 static const u8 sSproutTowerMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/sprout_tower/tiles.gbapal");
 static const u8 sSproutTowerMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/sprout_tower/tiles.4bpp.smol");
 static const u8 sSproutTowerMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/sprout_tower/tilemap.bin.smolTM");
+static const u8 sTinTowerMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/tin_tower/day/tiles.gbapal");
+static const u8 sTinTowerMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/tin_tower/day/tiles.4bpp.smol");
+static const u8 sTinTowerMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/tin_tower/day/tilemap.bin.smolTM");
+static const u8 sTohjoFallsMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/tohjo_falls/tiles.gbapal");
+static const u8 sTohjoFallsMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/tohjo_falls/tiles.4bpp.smol");
+static const u8 sTohjoFallsMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/tohjo_falls/tilemap.bin.smolTM");
+static const u8 sUnionCaveMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/union_cave/tiles.gbapal");
+static const u8 sUnionCaveMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/union_cave/tiles.4bpp.smol");
+static const u8 sUnionCaveMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/union_cave/tilemap.bin.smolTM");
+static const u8 sWhirlIslandsMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/whirl_islands/tiles.gbapal");
+static const u8 sWhirlIslandsMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/whirl_islands/tiles.4bpp.smol");
+static const u8 sWhirlIslandsMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/whirl_islands/tilemap.bin.smolTM");
 
 static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     [MPS_VIRIDIAN_FOREST] = {
@@ -311,6 +354,87 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
         .tilemapptr = sMoneanChamberMapPreviewTilemap,
         .palptr = sMoneanChamberMapPreviewPalette
     },
+ //Johto
+    [MPS_BURNED_TOWER] = {
+        .mapsec = MAPSEC_BURNED_TOWER,
+        .type = MPS_TYPE_CAVE,
+        .flagId = FLAG_WORLD_MAP_BURNED_TOWER,
+        .tilesptr = sBurnedTowerMapPreviewTiles,
+        .tilemapptr = sBurnedTowerMapPreviewTilemap,
+        .palptr = sBurnedTowerMapPreviewPalette
+    },
+    [MPS_DARK_CAVE] = {
+        .mapsec = MAPSEC_DARK_CAVE,
+        .type = MPS_TYPE_CAVE,
+        .flagId = FLAG_WORLD_MAP_DARK_CAVE,
+        .tilesptr = sDarkCaveMapPreviewTiles,
+        .tilemapptr = sDarkCaveMapPreviewTilemap,
+        .palptr = sDarkCaveMapPreviewPalette
+    },
+    [MPS_DRAGON_DEN] = {
+        .mapsec = MAPSEC_DRAGONS_DEN,
+        .type = MPS_TYPE_CAVE,
+        .flagId = FLAG_WORLD_MAP_DRAGONS_DEN,
+        .tilesptr = sDragonDenMapPreviewTiles,
+        .tilemapptr = sDragonDenMapPreviewTilemap,
+        .palptr = sDragonDenMapPreviewPalette
+    },
+    [MPS_ICE_PATH] = {
+        .mapsec = MAPSEC_ICE_PATH,
+        .type = MPS_TYPE_CAVE,
+        .flagId = FLAG_WORLD_MAP_ICE_PATH,
+        .tilesptr = sIcePathMapPreviewTiles,
+        .tilemapptr = sIcePathMapPreviewTilemap,
+        .palptr = sIcePathMapPreviewPalette
+    },
+    [MPS_ILEX_FOREST] = {
+        .mapsec = MAPSEC_ILEX_FOREST,
+        .type = MPS_TYPE_BASIC,
+        .flagId = FLAG_WORLD_MAP_ILEX_FOREST,
+        .tilesptr = sIlexForestMapPreviewTiles,
+        .tilemapptr = sIlexForestMapPreviewTilemap,
+        .palptr = sIlexForestMapPreviewPalette
+    },
+    [MPS_MT_MORTAR] = {
+        .mapsec = MAPSEC_MT_MORTAR,
+        .type = MPS_TYPE_CAVE,
+        .flagId = FLAG_WORLD_MAP_MT_MORTAR,
+        .tilesptr = sMtMortarMapPreviewTiles,
+        .tilemapptr = sMtMortarMapPreviewTilemap,
+        .palptr = sMtMortarMapPreviewPalette
+    },
+    [MPS_MT_SILVER] = {
+        .mapsec = MAPSEC_MT_SILVER,
+        .type = MPS_TYPE_CAVE,
+        .flagId = FLAG_WORLD_MAP_MT_SILVER,
+        .tilesptr = sMtSilverMapPreviewTiles,
+        .tilemapptr = sMtSilverMapPreviewTilemap,
+        .palptr = sMtSilverMapPreviewPalette
+    },
+    [MPS_NATIONAL_PARK] = {
+        .mapsec = MAPSEC_NATIONAL_PARK,
+        .type = MPS_TYPE_BASIC,
+        .flagId = FLAG_WORLD_MAP_NATIONAL_PARK,
+        .tilesptr = sNationalParkMapPreviewTiles,
+        .tilemapptr = sNationalParkMapPreviewTilemap,
+        .palptr = sNationalParkMapPreviewPalette
+    },
+    [MPS_RUINS_OF_ALPH] = {
+        .mapsec = MAPSEC_RUINS_OF_ALPH,
+        .type = MPS_TYPE_BASIC,
+        .flagId = FLAG_WORLD_MAP_RUINS_OF_ALPH,
+        .tilesptr = sRuinsOfAlphMapPreviewTiles,
+        .tilemapptr = sRuinsOfAlphMapPreviewTilemap,
+        .palptr = sRuinsOfAlphMapPreviewPalette
+    },
+    [MPS_SLOWPOKE_WELL] = {
+        .mapsec = MAPSEC_SLOWPOKE_WELL,
+        .type = MPS_TYPE_CAVE,
+        .flagId = FLAG_WORLD_MAP_SLOWPOKE_WELL,
+        .tilesptr = sSlowpokeWellMapPreviewTiles,
+        .tilemapptr = sSlowpokeWellMapPreviewTilemap,
+        .palptr = sSlowpokeWellMapPreviewPalette
+    },
     [MPS_SPROUT_TOWER] = {
         .mapsec = MAPSEC_SPROUT_TOWER,
         .type = MPS_TYPE_BASIC,
@@ -318,7 +442,39 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
         .tilesptr = sSproutTowerMapPreviewTiles,
         .tilemapptr = sSproutTowerMapPreviewTilemap,
         .palptr = sSproutTowerMapPreviewPalette
-    }
+    },
+    [MPS_TIN_TOWER] = {
+        .mapsec = MAPSEC_TIN_TOWER,
+        .type = MPS_TYPE_BASIC,
+        .flagId = FLAG_WORLD_MAP_TIN_TOWER,
+        .tilesptr = sTinTowerMapPreviewTiles,
+        .tilemapptr = sTinTowerMapPreviewTilemap,
+        .palptr = sTinTowerMapPreviewPalette
+    },
+    [MPS_TOHJO_FALLS] = {
+        .mapsec = MAPSEC_TOHJO_FALLS,
+        .type = MPS_TYPE_CAVE,
+        .flagId = FLAG_WORLD_MAP_TOHJO_FALLS,
+        .tilesptr = sTohjoFallsMapPreviewTiles,
+        .tilemapptr = sTohjoFallsMapPreviewTilemap,
+        .palptr = sTohjoFallsMapPreviewPalette
+    },
+    [MPS_UNION_CAVE] = {
+        .mapsec = MAPSEC_UNION_CAVE,
+        .type = MPS_TYPE_CAVE,
+        .flagId = FLAG_WORLD_MAP_UNION_CAVE,
+        .tilesptr = sUnionCaveMapPreviewTiles,
+        .tilemapptr = sUnionCaveMapPreviewTilemap,
+        .palptr = sUnionCaveMapPreviewPalette
+    },
+    [MPS_WHIRL_ISLANDS] = {
+        .mapsec = MAPSEC_WHIRL_ISLANDS,
+        .type = MPS_TYPE_CAVE,
+        .flagId = FLAG_WORLD_MAP_WHIRL_ISLANDS,
+        .tilesptr = sWhirlIslandsMapPreviewTiles,
+        .tilemapptr = sWhirlIslandsMapPreviewTilemap,
+        .palptr = sWhirlIslandsMapPreviewPalette
+	}
 };
 
 static const struct WindowTemplate sMapNameWindow = {
