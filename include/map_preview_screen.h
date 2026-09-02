@@ -31,12 +31,33 @@ enum MapPreviewScreenId
     MPS_SCUFIB_CHAMBER,
     MPS_RIXY_CHAMBER,
     MPS_VIAPOIS_CHAMBER,
+//Johto
+//    MPS_HGSS_BURNED_TOWER,
+//    MPS_HGSS_DARK_CAVE,
+//    MPS_HGSS_DRAGON_DEN,
+//    MPS_HGSS_ICE_PATH,
+//    MPS_HGSS_ILEX_FOREST,
+//    MPS_HGSS_MT_MORTAR,
+//    MPS_HGSS_MT_SILVER,
+//    MPS_HGSS_NATIONAL_PARK,
+//    MPS_HGSS_RUINS_OF_ALPH,
+//    MPS_HGSS_SLOWPOKE_WELL,
+    MPS_SPROUT_TOWER,
+//    MPS_HGSS_TIN_TOWER,
+//    MPS_HGSS_TOHJO_FALLS,
+//    MPS_HGSS_UNION_CAVE,
+//    MPS_HGSS_WHIRL_ISLANDS,
     MPS_COUNT
 };
 
 #define MPS_TYPE_CAVE   0
 #define MPS_TYPE_FOREST 1
 #define MPS_TYPE_ANY    2
+#define MPS_TYPE_BASIC  3
+
+#define MPS_BASIC_FADE_SPEED    1   // Speed the map preview fades out at when MPS_TYPE_BASIC is used.
+                                    // Numbers less than 1 give a shorter fade (negative allowed);
+                                    // numbers greater than 1 give a longer fade.
 
 struct MapPreviewScreen
 {
@@ -59,6 +80,7 @@ void MapPreview_InitBgs(void);
 void MapPreview_LoadGfx(mapsec_u8_t mapsec);
 bool32 MapPreview_IsGfxLoadFinished(void);
 void MapPreview_Unload(s32 windowId);
+void MapPreview_UnloadBgOnly(void);
 void MapPreview_StartForestTransition(mapsec_u8_t mapsec);
 
 #endif //GUARD_MAP_PREVIEW_SCREEN_H

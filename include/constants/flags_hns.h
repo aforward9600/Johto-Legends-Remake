@@ -2400,6 +2400,22 @@
 #define FLAG_WORLD_MAP_SEVEN_ISLAND_SEVAULT_CANYON_TANOBY_KEY   0
 #define FLAG_WORLD_MAP_BIRTH_ISLAND_EXTERIOR                    0
 
+#define FLAG_WORLD_MAP_BURNED_TOWER                                 0
+#define FLAG_WORLD_MAP_DARK_CAVE                                    0
+#define FLAG_WORLD_MAP_DRAGONS_DEN                                  0
+#define FLAG_WORLD_MAP_ICE_PATH                                     0
+#define FLAG_WORLD_MAP_ILEX_FOREST                                  0
+#define FLAG_WORLD_MAP_MT_MORTAR                                    0
+#define FLAG_WORLD_MAP_MT_SILVER                                    0
+#define FLAG_WORLD_MAP_NATIONAL_PARK                                0
+#define FLAG_WORLD_MAP_RUINS_OF_ALPH                                0
+#define FLAG_WORLD_MAP_SLOWPOKE_WELL                                0
+#define FLAG_WORLD_MAP_SPROUT_TOWER                                 0
+#define FLAG_WORLD_MAP_TIN_TOWER                                    0
+#define FLAG_WORLD_MAP_TOHJO_FALLS                                  0
+#define FLAG_WORLD_MAP_UNION_CAVE                                   0
+#define FLAG_WORLD_MAP_WHIRL_ISLANDS                                0
+
 // FRLG hide flags
 #define FLAG_HIDE_LORELEI_HOUSE_MEOWTH_DOLL                     0
 #define FLAG_HIDE_LORELEI_HOUSE_CHANSEY_DOLL                    0

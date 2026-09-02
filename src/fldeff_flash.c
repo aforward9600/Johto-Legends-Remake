@@ -1,4 +1,5 @@
 #include "global.h"
+#include "bg.h"
 #include "braille_puzzles.h"
 #include "decompress.h"
 #include "event_data.h"
@@ -7,6 +8,7 @@
 #include "fldeff.h"
 #include "gpu_regs.h"
 #include "main.h"
+#include "map_preview_screen.h"
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
@@ -14,6 +16,7 @@
 #include "sound.h"
 #include "sprite.h"
 #include "task.h"
+#include "constants/rgb.h"
 #include "constants/songs.h"
 
 struct FlashStruct
@@ -39,6 +42,10 @@ static void Task_EnterCaveTransition1(u8 taskId);
 static void Task_EnterCaveTransition2(u8 taskId);
 static void Task_EnterCaveTransition3(u8 taskId);
 static void Task_EnterCaveTransition4(u8 taskId);
+#if IS_HNS
+static void RunMapPreviewScreen(mapsec_u8_t mapsecId);
+static void Task_MapPreviewScreen_0(u8 taskId);
+#endif
 
 static const struct FlashStruct sTransitionTypes[] =
 {
@@ -156,6 +163,16 @@ static bool8 TryDoMapTransition(void)
     u8 i;
     enum MapType fromType = GetLastUsedWarpMapType();
     enum MapType toType = GetCurrentMapType();
+
+#if IS_HNS
+    if (GetLastUsedWarpMapSectionId() != gMapHeader.regionMapSectionId
+     && (MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_CAVE) == TRUE
+      || MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_BASIC) == TRUE))
+    {
+        RunMapPreviewScreen(gMapHeader.regionMapSectionId);
+        return TRUE;
+    }
+#endif
 
     for (i = 0; sTransitionTypes[i].fromType; i++)
     {
@@ -363,3 +380,82 @@ static void Task_EnterCaveTransition4(u8 taskId)
         SetMainCallback2(gMain.savedCallback);
     }
 }
+
+#if IS_HNS
+static void RunMapPreviewScreen(mapsec_u8_t mapSecId)
+{
+    u8 taskId = CreateTask(Task_MapPreviewScreen_0, 0);
+    gTasks[taskId].data[3] = mapSecId;
+}
+
+static void Task_MapPreviewScreen_0(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    switch (data[0])
+    {
+    case 0:
+        SetWordTaskArg(taskId, 5, (uintptr_t)gMain.vblankCallback);
+        SetVBlankCallback(NULL);
+        MapPreview_InitBgs();
+        MapPreview_LoadGfx(data[3]);
+        BlendPalettes(PALETTES_ALL, 0x10, RGB_BLACK);
+        data[0]++;
+        break;
+    case 1:
+        if (!MapPreview_IsGfxLoadFinished())
+        {
+            data[0]++;
+        }
+        break;
+    case 2:
+        if (!IsDma3ManagerBusyWithBgCopy())
+        {
+            BeginNormalPaletteFade(PALETTES_ALL, -1, 16, 0, RGB_BLACK);
+            SetVBlankCallback((IntrCallback)GetWordTaskArg(taskId, 5));
+            data[0]++;
+        }
+        break;
+    case 3:
+        if (!UpdatePaletteFade())
+        {
+            data[2] = MapPreview_GetDuration(data[3]);
+            data[0]++;
+        }
+        break;
+    case 4:
+        data[1]++;
+        if (data[1] > data[2] || JOY_HELD(B_BUTTON) || JOY_HELD(A_BUTTON))
+        {
+            if (MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_BASIC) == TRUE)
+            {
+                BeginNormalPaletteFade(PALETTES_ALL, MPS_BASIC_FADE_SPEED, 0, 16, RGB_BLACK);
+            }
+            else
+            {
+                BeginNormalPaletteFade(PALETTES_ALL, -2, 0, 16, RGB_WHITE);
+            }
+            data[0]++;
+        }
+        break;
+    case 5:
+        if (!UpdatePaletteFade())
+        {
+            int i;
+            for (i = 0; i < 16; i++)
+            {
+                data[i] = 0;
+            }
+            MapPreview_UnloadBgOnly();
+            if (MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_BASIC) == TRUE)
+            {
+                SetMainCallback2(gMain.savedCallback);
+            }
+            else
+            {
+                gTasks[taskId].func = Task_EnterCaveTransition2;
+            }
+        }
+        break;
+    }
+}
+#endif // IS_HNS

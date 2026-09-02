@@ -15,8 +15,6 @@
 
 static EWRAM_DATA bool8 sHasVisitedMapBefore = FALSE;
 
-#if IS_FRLG
-
 static EWRAM_DATA bool8 sAllocedBg0TilemapBuffer = FALSE;
 
 static void Task_RunMapPreviewScreenForest(u8 taskId);
@@ -84,6 +82,9 @@ static const u8 sIcefallCaveMapPreviewTilemap[] = INCBIN_U8("graphics/map_previe
 static const u8 sAlteringCaveMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/altering_cave/tiles.gbapal");
 static const u8 sAlteringCaveMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/altering_cave/tiles.4bpp.smol");
 static const u8 sAlteringCaveMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/altering_cave/tilemap.bin.smolTM");
+static const u8 sSproutTowerMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/sprout_tower/tiles.gbapal");
+static const u8 sSproutTowerMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/sprout_tower/tiles.4bpp.smol");
+static const u8 sSproutTowerMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/sprout_tower/tilemap.bin.smolTM");
 
 static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     [MPS_VIRIDIAN_FOREST] = {
@@ -120,7 +121,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_POKEMON_TOWER] = {
         .mapsec = MAPSEC_POKEMON_TOWER,
-        .type = MPS_TYPE_CAVE,
+        .type = MPS_TYPE_BASIC,
         .flagId = FLAG_WORLD_MAP_POKEMON_TOWER_1F,
         .tilesptr = sPokemonTowerMapPreviewTiles,
         .tilemapptr = sPokemonTowerMapPreviewTilemap,
@@ -309,6 +310,14 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
         .tilesptr = sMoneanChamberMapPreviewTiles,
         .tilemapptr = sMoneanChamberMapPreviewTilemap,
         .palptr = sMoneanChamberMapPreviewPalette
+    },
+    [MPS_SPROUT_TOWER] = {
+        .mapsec = MAPSEC_SPROUT_TOWER,
+        .type = MPS_TYPE_BASIC,
+        .flagId = FLAG_WORLD_MAP_SPROUT_TOWER,
+        .tilesptr = sSproutTowerMapPreviewTiles,
+        .tilemapptr = sSproutTowerMapPreviewTilemap,
+        .palptr = sSproutTowerMapPreviewPalette
     }
 };
 
@@ -383,7 +392,10 @@ void MapPreview_LoadGfx(mapsec_u8_t mapsec)
     if (idx != MPS_COUNT)
     {
        ResetTempTileDataBuffers();
-       LoadPalette(sMapPreviewScreenData[idx].palptr, BG_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
+       if (sMapPreviewScreenData[idx].type == MPS_TYPE_FOREST)
+           LoadPalette(sMapPreviewScreenData[idx].palptr, BG_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
+       else
+           LoadPalette(sMapPreviewScreenData[idx].palptr, BG_PLTT_ID(0), 16 * PLTT_SIZE_4BPP);
        DecompressAndCopyTileDataToVram(0, sMapPreviewScreenData[idx].tilesptr, 0, 0, 0);
        if (GetBgTilemapBuffer(0) == NULL)
        {
@@ -398,6 +410,15 @@ void MapPreview_LoadGfx(mapsec_u8_t mapsec)
        CopyBgTilemapBufferToVram(0);
     }
 }
+
+void MapPreview_UnloadBgOnly(void)
+{
+    if (sAllocedBg0TilemapBuffer)
+    {
+        Free(GetBgTilemapBuffer(0));
+    }
+}
+
 
 void MapPreview_Unload(s32 windowId)
 {
@@ -463,11 +484,11 @@ bool32 ForestMapPreviewScreenIsRunning(void)
 {
     if (FuncIsActiveTask(Task_RunMapPreviewScreenForest) == TRUE)
     {
-        return FALSE;
+        return TRUE;
     }
     else
     {
-        return TRUE;
+        return FALSE;
     }
 }
 
@@ -598,8 +619,6 @@ u16 MapPreview_GetDuration(mapsec_u8_t mapsec)
         }
     }
 }
-
-#endif // IS_FRLG
 
 void MapPreview_SetFlag(u16 flagId)
 {
