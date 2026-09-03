@@ -274,6 +274,7 @@ static const struct RegionMapLocation sRegionMapEntries_Johto[] = {
     [MAPSEC_PONI_CAVE]        = { 25, 14, 1, 1, COMPOUND_STRING("PONI CAVE") },
     [MAPSEC_ULAULA_CAVE]     = { 26, 14, 1, 1, COMPOUND_STRING("ULA'ULA CAVE") },
     [MAPSEC_ULAULA_CAVE_2]   = { 26, 12, 1, 1, COMPOUND_STRING("ULA'ULA CAVE") },
+    [MAPSEC_RUINS_OF_ALPH]     = { 6,  6,  1, 1, COMPOUND_STRING("RUINS OF ALPH") },
 };
 #endif
 

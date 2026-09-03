@@ -2684,6 +2684,14 @@
       "width": 1,
       "x": 6,
       "y": 11
+    },
+    {
+      "height": 1,
+      "id": "MAPSEC_RUINS_OF_ALPH_INTERIOR",
+      "name": "RUINS OF ALPH",
+      "width": 1,
+      "x": 20,
+      "y": 9
     }
   ]
 }

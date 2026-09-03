@@ -3,7 +3,7 @@
   "name": "RuinsOfAlph_PuzzleAndRewardChambers_hns",
   "layout": "LAYOUT_RUINS_OF_ALPH_PUZZLE_AND_REWARD_CHAMBERS_HNS",
   "music": "MUS_HG_RUINS_OF_ALPH",
-  "region_map_section": "MAPSEC_RUINS_OF_ALPH",
+  "region_map_section": "MAPSEC_RUINS_OF_ALPH_INTERIOR",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_UNDERGROUND",

@@ -4,18 +4,24 @@
 #include "field_weather.h"
 #include "gpu_regs.h"
 #include "malloc.h"
+#include "map_name_popup.h"
 #include "map_preview_screen.h"
 #include "menu.h"
 #include "overworld.h"
 #include "palette.h"
 #include "region_map.h"
 #include "script.h"
+#include "secret_base.h"
 #include "string_util.h"
 #include "constants/region_map_sections.h"
 
 static EWRAM_DATA bool8 sHasVisitedMapBefore = FALSE;
 
 static EWRAM_DATA bool8 sAllocedBg0TilemapBuffer = FALSE;
+
+// Frames the player is still held in place for by the FOREST transition, ticked
+// down by Task_RunMapPreviewScreenForest. See MPS_FOREST_LOCK_FADE_PERCENT.
+static EWRAM_DATA u16 sForestInputLockFrames = 0;
 
 static void Task_RunMapPreviewScreenForest(u8 taskId);
 
@@ -388,8 +394,8 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
         .palptr = sIcePathMapPreviewPalette
     },
     [MPS_ILEX_FOREST] = {
-        .mapsec = MAPSEC_ILEX_FOREST,
-        .type = MPS_TYPE_BASIC,
+        .mapsec = MAPSEC_RUINS_OF_ALPH,
+        .type = MPS_TYPE_FOREST,
         .flagId = FLAG_WORLD_MAP_ILEX_FOREST,
         .tilesptr = sIlexForestMapPreviewTiles,
         .tilemapptr = sIlexForestMapPreviewTilemap,
@@ -413,15 +419,15 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_NATIONAL_PARK] = {
         .mapsec = MAPSEC_NATIONAL_PARK,
-        .type = MPS_TYPE_BASIC,
+        .type = MPS_TYPE_FOREST,
         .flagId = FLAG_WORLD_MAP_NATIONAL_PARK,
         .tilesptr = sNationalParkMapPreviewTiles,
         .tilemapptr = sNationalParkMapPreviewTilemap,
         .palptr = sNationalParkMapPreviewPalette
     },
     [MPS_RUINS_OF_ALPH] = {
-        .mapsec = MAPSEC_RUINS_OF_ALPH,
-        .type = MPS_TYPE_BASIC,
+        .mapsec = MAPSEC_RUINS_OF_ALPH_INTERIOR,
+        .type = MPS_TYPE_CAVE,
         .flagId = FLAG_WORLD_MAP_RUINS_OF_ALPH,
         .tilesptr = sRuinsOfAlphMapPreviewTiles,
         .tilemapptr = sRuinsOfAlphMapPreviewTilemap,
@@ -609,8 +615,16 @@ void MapPreview_StartForestTransition(mapsec_u8_t mapsec)
     SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 0));
     SetGpuRegBits(REG_OFFSET_WININ, WININ_WIN0_CLR | WININ_WIN1_CLR);
     SetGpuRegBits(REG_OFFSET_WINOUT, WINOUT_WIN01_CLR);
-    gTasks[taskId].data[11] = MapPreview_CreateMapNameWindow(mapsec);
+    PreservePaletteInWeather(13);
+//    gTasks[taskId].data[11] = MapPreview_CreateMapNameWindow(mapsec);
     LockPlayerFieldControls();
+    // This lock does not survive on its own: the warp-exit task (Task_ExitNonDoor
+    // and friends) unlocks controls as soon as the weather fade-in finishes, which
+    // is exactly when the preview's hold begins - so without the window below the
+    // player can walk around behind a still-opaque preview. Counted down from the
+    // start of the hold, not from here, since states 0-2 are still fading in.
+    sForestInputLockFrames = gTasks[taskId].data[10]
+                           + MPS_FOREST_FADE_TOTAL_FRAMES * MPS_FOREST_LOCK_FADE_PERCENT / 100;
 }
 
 u16 MapPreview_CreateMapNameWindow(mapsec_u8_t mapsec)
@@ -648,17 +662,38 @@ bool32 ForestMapPreviewScreenIsRunning(void)
     }
 }
 
+// Whether the FOREST transition is still holding the player in place. Gated on
+// the task actually running so a transition that never reaches its cleanup can
+// not leave the player permanently frozen.
+bool8 MapPreview_ForestInputIsLocked(void)
+{
+    return (sForestInputLockFrames != 0 && ForestMapPreviewScreenIsRunning() == TRUE);
+}
+
 static void Task_RunMapPreviewScreenForest(u8 taskId)
 {
     s16 * data;
 
     data = gTasks[taskId].data;
+    // Only ticks from the hold (state 3) onward - during states 0-2 the screen is
+    // still fading in and the warp-exit task has not handed controls back yet, so
+    // counting there would shorten the window the player actually feels.
+    if (data[0] >= 3 && sForestInputLockFrames != 0)
+        sForestInputLockFrames--;
+
+    // The preview owns BLDALPHA for as long as this task lives, so re-assert it every
+    // frame rather than only while the cross-fade is stepping. data[8]/data[9] hold
+    // 16/0 - fully opaque - until state 4 starts moving them, which keeps the preview
+    // solid through the gfx load and the hold. Without this the FadeInFromBlack() call
+    // in state 1 left the whole preview part-transparent until state 4's first write.
+    // State 4 writes again after stepping, so the fade itself is unchanged.
+    SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(data[8], data[9]));
+
     switch (data[0])
     {
     case 0:
         if (!MapPreview_IsGfxLoadFinished() && !IsDma3ManagerBusyWithBgCopy())
         {
-            CopyWindowToVram(data[11], COPYWIN_FULL);
             data[0]++;
         }
         break;
@@ -685,24 +720,31 @@ static void Task_RunMapPreviewScreenForest(u8 taskId)
         }
         break;
     case 4:
-        switch (data[1])
+        // Each of the three phases below (increment, decrement, idle) now spans
+        // MPS_FOREST_FADE_FRAMES_PER_STEP frames instead of always 1, so the fade
+        // can be slowed down without changing its stepping pattern. The value 1
+        // reproduces the original frame-for-frame behaviour exactly.
+        if (data[1] % MPS_FOREST_FADE_FRAMES_PER_STEP == 0)
         {
-        case 0:
-            data[9]++;
-            if (data[9] > 16)
+            switch (data[1] / MPS_FOREST_FADE_FRAMES_PER_STEP)
             {
-                data[9] = 16;
+            case 0:
+                data[9]++;
+                if (data[9] > 16)
+                {
+                    data[9] = 16;
+                }
+                break;
+            case 1:
+                data[8]--;
+                if (data[8] < 0)
+                {
+                    data[8] = 0;
+                }
+                break;
             }
-            break;
-        case 1:
-            data[8]--;
-            if (data[8] < 0)
-            {
-                data[8] = 0;
-            }
-            break;
         }
-        data[1] = (data[1] + 1) % 3;
+        data[1] = (data[1] + 1) % (MPS_FOREST_FADE_FRAMES_PER_STEP * 3);
         SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(data[8], data[9]));
         if (data[8] == 0 && data[9] == 16)
         {
@@ -714,13 +756,18 @@ static void Task_RunMapPreviewScreenForest(u8 taskId)
     case 5:
         if (!IsDma3ManagerBusyWithBgCopy())
         {
-            MapPreview_Unload(data[11]);
+            MapPreview_UnloadBgOnly();
+            ResetPaletteColorMapType(13);
+            sForestInputLockFrames = 0;
             SetBgAttribute(0, BG_ATTR_PRIORITY, data[2]);
             SetGpuReg(REG_OFFSET_DISPCNT, data[3]);
             SetGpuReg(REG_OFFSET_BLDCNT, data[4]);
             SetGpuReg(REG_OFFSET_BLDALPHA, data[5]);
             SetGpuReg(REG_OFFSET_WININ, data[6]);
             SetGpuReg(REG_OFFSET_WINOUT, data[7]);
+            // Now that the preview is gone, announce the map the normal way.
+            if (gMapHeader.showMapName == TRUE && SecretBaseMapPopupEnabled() == TRUE)
+                ShowMapNamePopup();
             DestroyTask(taskId);
         }
         break;
@@ -774,6 +821,15 @@ u16 MapPreview_GetDuration(mapsec_u8_t mapsec)
             return 40;
         }
     }
+}
+
+bool8 MapPreview_ForestFadeIsActive(void)
+{
+#if IS_HNS
+    return MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_FOREST);
+#else
+    return FALSE;
+#endif
 }
 
 void MapPreview_SetFlag(u16 flagId)

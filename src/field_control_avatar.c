@@ -237,11 +237,7 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     }
     if (input->pressedAButton && TrySetupDiveDownScript() == TRUE)
         return TRUE;
-    if (input->pressedStartButton
-#if IS_FRLG || IS_HNS
-     && !ForestMapPreviewScreenIsRunning()
-#endif
-       )
+    if (input->pressedStartButton && !ForestMapPreviewScreenIsRunning())
     {
         FlagSet(FLAG_OPENED_START_MENU);
         PlaySE(SE_WIN_OPEN);

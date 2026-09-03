@@ -19,6 +19,7 @@
 #include "trig.h"
 #include "gpu_regs.h"
 #include "field_camera.h"
+#include "map_preview_screen.h"
 #include "overworld.h"
 
 #define DROUGHT_COLOR_INDEX(color) ((((color) >> 1) & 0xF) | (((color) >> 2) & 0xF0) | (((color) >> 3) & 0xF00))
@@ -315,7 +316,8 @@ static void Task_WeatherMain(u8 taskId)
 
 static void None_Init(void)
 {
-    Weather_SetBlendCoeffs(8, BASE_SHADOW_INTENSITY); // Indoor shadows
+    if (!MapPreview_ForestFadeIsActive())
+        Weather_SetBlendCoeffs(8, BASE_SHADOW_INTENSITY); // Indoor shadows
     gWeatherPtr->noShadows = FALSE;
     gWeatherPtr->targetColorMapIndex = 0;
     gWeatherPtr->colorMapStepDelay = 0;
@@ -809,7 +811,12 @@ void FadeSelectedPals(u8 mode, s8 delay, u32 selectedPalettes)
         gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_SCREEN_FADING_IN;
         gWeatherPtr->fadeInFirstFrame = TRUE;
         gWeatherPtr->fadeInTimer = 0;
-        Weather_SetBlendCoeffs(gWeatherPtr->currBlendEVA, gWeatherPtr->currBlendEVB);
+        // The forest map preview calls FadeInFromBlack() from inside its own task and
+        // then drives BLDALPHA itself, so re-applying the weather's stored coefficients
+        // here would leave the preview part-transparent for its whole hold. Task-scoped
+        // on purpose: this must only be skipped while that transition is actually live.
+        if (!ForestMapPreviewScreenIsRunning())
+            Weather_SetBlendCoeffs(gWeatherPtr->currBlendEVA, gWeatherPtr->currBlendEVB);
         gWeatherPtr->readyForInit = TRUE;
     }
 }

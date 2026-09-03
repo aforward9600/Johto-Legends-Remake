@@ -22,6 +22,7 @@
 #include "follower_helper.h"
 #include "gpu_regs.h"
 #include "graphics.h"
+#include "map_preview_screen.h"
 #include "mauville_old_man.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
@@ -2940,6 +2941,22 @@ static u32 GetLightTypeFromTemplate(struct ObjectEventTemplate *template)
     return template->trainerRange_berryTreeId;
 }
 
+// Whether the MPS_TYPE_FOREST map preview is mid-cross-fade and therefore owns
+// BLDALPHA. That fade drives the blend coefficients itself every frame, but light
+// sprites run every frame too and reset them to the shadow coefficients below,
+// which pins the fade at a fixed blend instead of letting it run. Keyed on the
+// task actually being alive, not on the map merely having a forest preview, so
+// the lights behave normally for the rest of the time the player is on the map.
+// Ilex Forest hid this for a long time by having no light sprites at all.
+static bool32 ForestMapPreviewOwnsBlendCoeffs(void)
+{
+#if IS_FRLG || IS_HNS
+    return ForestMapPreviewScreenIsRunning();
+#else
+    return FALSE;
+#endif
+}
+
 // Sprite callback for light sprites
 void UpdateLightSprite(struct Sprite *sprite)
 {
@@ -2958,7 +2975,8 @@ void UpdateLightSprite(struct Sprite *sprite)
         DestroySprite(sprite);
         FieldEffectFreeTilesIfUnused(sheetTileStart);
         FieldEffectFreePaletteIfUnused(paletteNum);
-        Weather_SetBlendCoeffs(7, BASE_SHADOW_INTENSITY); // TODO: Restore original blend coeffs at dawn
+        if (!ForestMapPreviewOwnsBlendCoeffs())
+            Weather_SetBlendCoeffs(7, BASE_SHADOW_INTENSITY); // TODO: Restore original blend coeffs at dawn
         return;
     }
 
@@ -2990,7 +3008,8 @@ void UpdateLightSprite(struct Sprite *sprite)
         sprite->invisible = FALSE;
     }
     // Note: Don't set window registers during hardware fade!
-    Weather_SetBlendCoeffs(7, BASE_SHADOW_INTENSITY);
+    if (!ForestMapPreviewOwnsBlendCoeffs())
+        Weather_SetBlendCoeffs(7, BASE_SHADOW_INTENSITY);
 }
 
 // Spawn a light at a map coordinate
