@@ -394,7 +394,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
         .palptr = sIcePathMapPreviewPalette
     },
     [MPS_ILEX_FOREST] = {
-        .mapsec = MAPSEC_RUINS_OF_ALPH,
+        .mapsec = MAPSEC_ILEX_FOREST,
         .type = MPS_TYPE_FOREST,
         .flagId = FLAG_WORLD_MAP_ILEX_FOREST,
         .tilesptr = sIlexForestMapPreviewTiles,
