@@ -167,7 +167,8 @@ static bool8 TryDoMapTransition(void)
 #if IS_HNS
     if (GetLastUsedWarpMapSectionId() != gMapHeader.regionMapSectionId
      && (MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_CAVE) == TRUE
-      || MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_BASIC) == TRUE))
+      || MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_BASIC) == TRUE
+	  || MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_KANTO_CAVE) == TRUE))
     {
         RunMapPreviewScreen(gMapHeader.regionMapSectionId);
         return TRUE;

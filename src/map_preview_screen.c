@@ -25,9 +25,9 @@ static EWRAM_DATA u16 sForestInputLockFrames = 0;
 
 static void Task_RunMapPreviewScreenForest(u8 taskId);
 
-static const u8 sViridianForestMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/viridian_forest/tiles.gbapal");
-static const u8 sViridianForestMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/viridian_forest/tiles.4bpp.smol");
-static const u8 sViridianForestMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/viridian_forest/tilemap.bin.smolTM");
+static const u8 sViridianForestMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/viridian_forest/day/tiles.gbapal");
+static const u8 sViridianForestMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/viridian_forest/day/tiles.4bpp.smol");
+static const u8 sViridianForestMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/viridian_forest/day/tilemap.bin.smolTM");
 static const u8 sRockTunnelMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/rock_tunnel/tiles.gbapal");
 static const u8 sRockTunnelMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/rock_tunnel/tiles.4bpp.smol");
 static const u8 sRockTunnelMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/rock_tunnel/tilemap.bin.smolTM");
@@ -67,9 +67,9 @@ static const u8 sSafariZoneMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview
 static const u8 sMoneanChamberMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/monean_chamber/tiles.gbapal");
 static const u8 sMoneanChamberMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/monean_chamber/tiles.4bpp.smol");
 static const u8 sMoneanChamberMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/monean_chamber/tilemap.bin.smolTM");
-static const u8 sDottedHoleMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/dotted_hole/tiles.gbapal");
-static const u8 sDottedHoleMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/dotted_hole/tiles.4bpp.smol");
-static const u8 sDottedHoleMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/dotted_hole/tilemap.bin.smolTM");
+static const u8 sDottedHoleMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/dotted_hole/day/tiles.gbapal");
+static const u8 sDottedHoleMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/dotted_hole/day/tiles.4bpp.smol");
+static const u8 sDottedHoleMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/dotted_hole/day/tilemap.bin.smolTM");
 static const u8 sCeruleanCaveMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/cerulean_cave/tiles.gbapal");
 static const u8 sCeruleanCaveMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/cerulean_cave/tiles.4bpp.smol");
 static const u8 sCeruleanCaveMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/cerulean_cave/tilemap.bin.smolTM");
@@ -170,7 +170,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_POKEMON_TOWER] = {
         .mapsec = MAPSEC_POKEMON_TOWER,
-        .type = MPS_TYPE_BASIC,
+        .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_POKEMON_TOWER_1F,
         .tilesptr = sPokemonTowerMapPreviewTiles,
         .tilemapptr = sPokemonTowerMapPreviewTilemap,
@@ -210,7 +210,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_SILPH_CO] = {
         .mapsec = MAPSEC_SILPH_CO,
-        .type = MPS_TYPE_CAVE,
+        .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_SILPH_CO_1F,
         .tilesptr = sSilphCoMapPreviewTiles,
         .tilemapptr = sSilphCoMapPreviewTilemap,
@@ -242,7 +242,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_MT_EMBER] = {
         .mapsec = MAPSEC_MT_EMBER,
-        .type = MPS_TYPE_CAVE,
+        .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_MT_EMBER_EXTERIOR,
         .tilesptr = sMtEmberMapPreviewTiles,
         .tilemapptr = sMtEmberMapPreviewTilemap,
@@ -258,7 +258,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_MONEAN_CHAMBER] = {
         .mapsec = MAPSEC_MONEAN_CHAMBER,
-        .type = MPS_TYPE_CAVE,
+        .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER,
         .tilesptr = sMoneanChamberMapPreviewTiles,
         .tilemapptr = sMoneanChamberMapPreviewTilemap,
@@ -266,7 +266,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_DOTTED_HOLE] = {
         .mapsec = MAPSEC_DOTTED_HOLE,
-        .type = MPS_TYPE_CAVE,
+        .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_SIX_ISLAND_DOTTED_HOLE_1F,
         .tilesptr = sDottedHoleMapPreviewTiles,
         .tilemapptr = sDottedHoleMapPreviewTilemap,
@@ -282,7 +282,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_ICEFALL_CAVE] = {
         .mapsec = MAPSEC_ICEFALL_CAVE,
-        .type = MPS_TYPE_CAVE,
+        .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_FOUR_ISLAND_ICEFALL_CAVE_ENTRANCE,
         .tilesptr = sIcefallCaveMapPreviewTiles,
         .tilemapptr = sIcefallCaveMapPreviewTilemap,
@@ -290,7 +290,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_LOST_CAVE] = {
         .mapsec = MAPSEC_LOST_CAVE,
-        .type = MPS_TYPE_CAVE,
+        .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_FIVE_ISLAND_LOST_CAVE_ENTRANCE,
         .tilesptr = sLostCaveMapPreviewTiles,
         .tilemapptr = sLostCaveMapPreviewTilemap,
@@ -298,7 +298,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_ALTERING_CAVE] = {
         .mapsec = MAPSEC_ALTERING_CAVE_FRLG,
-        .type = MPS_TYPE_CAVE,
+        .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_SIX_ISLAND_ALTERING_CAVE,
         .tilesptr = sAlteringCaveMapPreviewTiles,
         .tilemapptr = sAlteringCaveMapPreviewTilemap,
@@ -314,7 +314,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_LIPTOO_CHAMBER] = {
         .mapsec = MAPSEC_LIPTOO_CHAMBER,
-        .type = MPS_TYPE_CAVE,
+        .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER,
         .tilesptr = sMoneanChamberMapPreviewTiles,
         .tilemapptr = sMoneanChamberMapPreviewTilemap,
@@ -322,7 +322,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_WEEPTH_CHAMBER] = {
         .mapsec = MAPSEC_WEEPTH_CHAMBER,
-        .type = MPS_TYPE_CAVE,
+        .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER,
         .tilesptr = sMoneanChamberMapPreviewTiles,
         .tilemapptr = sMoneanChamberMapPreviewTilemap,
@@ -330,7 +330,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_TDILFORD_CHAMBER] = {
         .mapsec = MAPSEC_DILFORD_CHAMBER,
-        .type = MPS_TYPE_CAVE,
+        .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER,
         .tilesptr = sMoneanChamberMapPreviewTiles,
         .tilemapptr = sMoneanChamberMapPreviewTilemap,
@@ -338,7 +338,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_SCUFIB_CHAMBER] = {
         .mapsec = MAPSEC_SCUFIB_CHAMBER,
-        .type = MPS_TYPE_CAVE,
+        .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER,
         .tilesptr = sMoneanChamberMapPreviewTiles,
         .tilemapptr = sMoneanChamberMapPreviewTilemap,
@@ -346,7 +346,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_RIXY_CHAMBER] = {
         .mapsec = MAPSEC_RIXY_CHAMBER,
-        .type = MPS_TYPE_CAVE,
+        .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER,
         .tilesptr = sMoneanChamberMapPreviewTiles,
         .tilemapptr = sMoneanChamberMapPreviewTilemap,
@@ -354,7 +354,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     },
     [MPS_VIAPOIS_CHAMBER] = {
         .mapsec = MAPSEC_VIAPOIS_CHAMBER,
-        .type = MPS_TYPE_CAVE,
+        .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER,
         .tilesptr = sMoneanChamberMapPreviewTiles,
         .tilemapptr = sMoneanChamberMapPreviewTilemap,
@@ -554,7 +554,8 @@ void MapPreview_LoadGfx(mapsec_u8_t mapsec)
     if (idx != MPS_COUNT)
     {
        ResetTempTileDataBuffers();
-       if (sMapPreviewScreenData[idx].type == MPS_TYPE_FOREST)
+       if (sMapPreviewScreenData[idx].type == MPS_TYPE_FOREST
+		   || sMapPreviewScreenData[idx].type == MPS_TYPE_KANTO_CAVE)
            LoadPalette(sMapPreviewScreenData[idx].palptr, BG_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
        else
            LoadPalette(sMapPreviewScreenData[idx].palptr, BG_PLTT_ID(0), 16 * PLTT_SIZE_4BPP);
