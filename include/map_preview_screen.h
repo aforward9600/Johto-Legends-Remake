@@ -34,6 +34,7 @@ enum MapPreviewScreenId
 //Johto
     MPS_BURNED_TOWER,
     MPS_DARK_CAVE,
+	MPS_DARK_CAVE_45,
     MPS_DRAGON_DEN,
     MPS_ICE_PATH,
     MPS_ILEX_FOREST,
@@ -88,6 +89,14 @@ struct MapPreviewScreen
     const void *tilesptr;
     const void *tilemapptr;
     const void *palptr;
+#if IS_HNS
+    // Optional night-time variant. Leave NULL (the default) for locations with
+    // only one preview image - tilesptr/tilemapptr/palptr above are then used
+    // at all times of day.
+    const void *nightTilesptr;
+    const void *nightTilemapptr;
+    const void *nightPalptr;
+#endif
 };
 
 u16 MapPreview_CreateMapNameWindow(u8 id);
