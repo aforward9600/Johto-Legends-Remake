@@ -95,9 +95,15 @@ static const u8 sBerryForestMapPreviewTilemap[] = INCBIN_U8("graphics/map_previe
 static const u8 sIcefallCaveMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/icefall_cave/tiles.gbapal");
 static const u8 sIcefallCaveMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/icefall_cave/tiles.4bpp.smol");
 static const u8 sIcefallCaveMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/icefall_cave/tilemap.bin.smolTM");
-static const u8 sAlteringCaveMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/altering_cave/tiles.gbapal");
-static const u8 sAlteringCaveMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/altering_cave/tiles.4bpp.smol");
-static const u8 sAlteringCaveMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/altering_cave/tilemap.bin.smolTM");
+static const u8 sIcefallNightCaveMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/icefall_cave/night/tiles.gbapal");
+static const u8 sIcefallNightCaveMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/icefall_cave/night/tiles.4bpp.smol");
+static const u8 sIcefallNightCaveMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/icefall_cave/night/tiles.bin.smolTM");
+static const u8 sAlteringCaveMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/altering_cave/day/tiles.gbapal");
+static const u8 sAlteringCaveMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/altering_cave/day/tiles.4bpp.smol");
+static const u8 sAlteringCaveMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/altering_cave/day/tilemap.bin.smolTM");
+static const u8 sAlteringCaveNightMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/altering_cave/night/tiles.gbapal");
+static const u8 sAlteringCaveNightMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/altering_cave/night/tiles.4bpp.smol");
+static const u8 sAlteringCaveNightMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/altering_cave/night/tilemap.bin.smolTM");
 
 static const u8 sBurnedTowerMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/burned_tower/tiles.gbapal");
 static const u8 sBurnedTowerMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/burned_tower/tiles.4bpp.smol");
@@ -320,7 +326,10 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
         .flagId = FLAG_WORLD_MAP_FOUR_ISLAND_ICEFALL_CAVE_ENTRANCE,
         .tilesptr = sIcefallCaveMapPreviewTiles,
         .tilemapptr = sIcefallCaveMapPreviewTilemap,
-        .palptr = sIcefallCaveMapPreviewPalette
+        .palptr = sIcefallCaveMapPreviewPalette,
+		.nightTilesptr = sIcefallNightCaveMapPreviewTiles,
+		.nightTilemapptr = sIcefallNightCaveMapPreviewTilemap,
+		.nightPalptr = sIcefallNightCaveMapPreviewPalette
     },
     [MPS_LOST_CAVE] = {
         .mapsec = MAPSEC_LOST_CAVE,
@@ -331,12 +340,15 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
         .palptr = sLostCaveMapPreviewPalette
     },
     [MPS_ALTERING_CAVE] = {
-        .mapsec = MAPSEC_ALTERING_CAVE_FRLG,
+        .mapsec = MAPSEC_ALTERING_CAVE,
         .type = MPS_TYPE_KANTO_CAVE,
         .flagId = FLAG_WORLD_MAP_SIX_ISLAND_ALTERING_CAVE,
         .tilesptr = sAlteringCaveMapPreviewTiles,
         .tilemapptr = sAlteringCaveMapPreviewTilemap,
-        .palptr = sAlteringCaveMapPreviewPalette
+        .palptr = sAlteringCaveMapPreviewPalette,
+        .nightTilesptr = sAlteringCaveNightMapPreviewTiles,
+        .nightTilemapptr = sAlteringCaveNightMapPreviewTilemap,
+        .nightPalptr = sAlteringCaveNightMapPreviewPalette
     },
     [MPS_PATTERN_BUSH] = {
         .mapsec = MAPSEC_PATTERN_BUSH,
@@ -412,7 +424,7 @@ static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
         .palptr = sDarkCaveMapPreviewPalette
     },
     [MPS_DARK_CAVE_45] = {
-        .mapsec = MAPSEC_DRAGONS_DEN,
+        .mapsec = MAPSEC_DARK_CAVE,
         .type = MPS_TYPE_CAVE,
         .flagId = FLAG_WORLD_MAP_DARK_CAVE,
         .tilesptr = sDarkCaveMap45PreviewTiles,
