@@ -18,33 +18,33 @@ static u8 GetCurrentBadgeCount(void)
 
 static const u8 sLevelCapTable_Normal[] =
 {
-    [0] = 11,  // no badges
-    [1] = 16,  // badge 1
-    [2] = 21,  // badge 2
-    [3] = 25,  // badge 3
-    [4] = 31,  // badge 4
-    [5] = 36,  // badge 5
-    [6] = 38,  // badge 6
-    [7] = 45,  // badge 7
-    [8] = 56,  // badge 8
+    [0] = 15,  // no badges
+    [1] = 21,  // badge 1
+    [2] = 29,  // badge 2
+    [3] = 31,  // badge 3
+    [4] = 34,  // badge 4
+    [5] = 40,  // badge 5
+    [6] = 50,  // badge 6
+    [7] = 55,  // badge 7
+    [8] = 68,  // badge 8
 };
 
 static const u8 sLevelCapTable_Hard[] =
 {
-    [0] = 8,
-    [1] = 15,
-    [2] = 20,
-    [3] = 23,
-    [4] = 29,
-    [5] = 33,
-    [6] = 37,
-    [7] = 42,
-    [8] = 54,
+    [0] = 12,
+    [1] = 18,
+    [2] = 26,
+    [3] = 28,
+    [4] = 31,
+    [5] = 37,
+    [6] = 47,
+    [7] = 52,
+    [8] = 65,
 };
 
 // Post-league caps, matching HnS: beating the Johto Elite Four raises the cap to
 // 70 for the Kanto half, and only beating the Kanto league removes it entirely.
-#define KANTO_MAX_LEVEL 70
+#define KANTO_MAX_LEVEL 80
 
 u32 GetCurrentLevelCap(void)
 {
