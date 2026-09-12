@@ -3275,7 +3275,7 @@ $(POKEMONGFXDIR)/jirachi/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/deoxys/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(POKEMONGFXDIR)/turtwig/overworld.4bpp: %.4bpp: %.png
+$(POKEMONGFXDIR)/kotora/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/grotle/overworld.4bpp: %.4bpp: %.png

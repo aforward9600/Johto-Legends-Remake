@@ -395,7 +395,7 @@
 #define SPECIES_JIRACHI                                 385
 #define SPECIES_DEOXYS                                  SPECIES_DEOXYS_NORMAL
 #define SPECIES_DEOXYS_NORMAL                           386
-#define SPECIES_TURTWIG                                 387
+#define SPECIES_KOTORA                                  387
 #define SPECIES_GROTLE                                  388
 #define SPECIES_TORTERRA                                389
 #define SPECIES_CHIMCHAR                                390

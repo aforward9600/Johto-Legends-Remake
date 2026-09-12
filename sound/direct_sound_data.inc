@@ -3942,7 +3942,7 @@ Cry_Deoxys::
 .endif
 .endif @ P_FAMILY_DEOXYS
 
-.if P_FAMILY_TURTWIG == TRUE
+.if P_FAMILY_KOTORA == TRUE
 	.align 2
 Cry_Turtwig::
 .if TESTING == FALSE
@@ -3960,7 +3960,7 @@ Cry_Torterra::
 .if TESTING == FALSE
 	.incbin "sound/direct_sound_samples/cries/torterra.bin"
 .endif
-.endif @ P_FAMILY_TURTWIG
+.endif @ P_FAMILY_KOTORA
 
 .if P_FAMILY_CHIMCHAR == TRUE
 	.align 2

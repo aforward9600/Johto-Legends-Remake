@@ -3447,28 +3447,16 @@ static const u16 sBagonEggMoveLearnset[] = {
 };
 #endif //P_FAMILY_BAGON
 
-#if P_FAMILY_TURTWIG
-static const u16 sTurtwigEggMoveLearnset[] = {
-    MOVE_WORRY_SEED,
-    MOVE_GROWTH,
-    MOVE_TICKLE,
+#if P_FAMILY_KOTORA
+static const u16 sKotoraEggMoveLearnset[] = {
     MOVE_BODY_SLAM,
     MOVE_DOUBLE_EDGE,
-    MOVE_SAND_TOMB,
-    MOVE_SEED_BOMB,
-    MOVE_THRASH,
-    MOVE_AMNESIA,
     MOVE_SUPERPOWER,
-    MOVE_STOCKPILE,
-    MOVE_SWALLOW,
-    MOVE_SPIT_UP,
-    MOVE_EARTH_POWER,
-    MOVE_WIDE_GUARD,
-    MOVE_GRASSY_TERRAIN,
-    MOVE_HEAVY_SLAM,
+    MOVE_FLAIL,
+    MOVE_PAY_DAY,
     MOVE_UNAVAILABLE,
 };
-#endif //P_FAMILY_TURTWIG
+#endif //P_FAMILY_KOTORA
 
 #if P_FAMILY_CHIMCHAR
 static const u16 sChimcharEggMoveLearnset[] = {

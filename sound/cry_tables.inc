@@ -1113,11 +1113,11 @@ gCryTable::
 .if P_FAMILY_DEOXYS == TRUE
 	cry Cry_Deoxys
 .endif @ P_FAMILY_DEOXYS
-.if P_FAMILY_TURTWIG == TRUE
+.if P_FAMILY_KOTORA == TRUE
 	cry Cry_Turtwig
 	cry Cry_Grotle
 	cry Cry_Torterra
-.endif @ P_FAMILY_TURTWIG
+.endif @ P_FAMILY_KOTORA
 .if P_FAMILY_CHIMCHAR == TRUE
 	cry Cry_Chimchar
 	cry Cry_Monferno
@@ -3669,11 +3669,11 @@ gCryTable_Reverse::
 .if P_FAMILY_DEOXYS == TRUE
 	cry_reverse Cry_Deoxys
 .endif @ P_FAMILY_DEOXYS
-.if P_FAMILY_TURTWIG == TRUE
+.if P_FAMILY_KOTORA == TRUE
 	cry_reverse Cry_Turtwig
 	cry_reverse Cry_Grotle
 	cry_reverse Cry_Torterra
-.endif @ P_FAMILY_TURTWIG
+.endif @ P_FAMILY_KOTORA
 .if P_FAMILY_CHIMCHAR == TRUE
 	cry_reverse Cry_Chimchar
 	cry_reverse Cry_Monferno

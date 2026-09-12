@@ -1099,11 +1099,11 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
     [SPECIES_DEOXYS_DEFENSE] = sDeoxysDefenseLevelUpLearnset,
     [SPECIES_DEOXYS_SPEED] = sDeoxysSpeedLevelUpLearnset,
 #endif // P_FAMILY_DEOXYS
-#if P_FAMILY_TURTWIG
-    [SPECIES_TURTWIG] = sTurtwigLevelUpLearnset,
+#if P_FAMILY_KOTORA
+    [SPECIES_KOTORA] = sKotoraLevelUpLearnset,
     [SPECIES_GROTLE] = sGrotleLevelUpLearnset,
     [SPECIES_TORTERRA] = sTorterraLevelUpLearnset,
-#endif // P_FAMILY_TURTWIG
+#endif // P_FAMILY_KOTORA
 #if P_FAMILY_CHIMCHAR
     [SPECIES_CHIMCHAR] = sChimcharLevelUpLearnset,
     [SPECIES_MONFERNO] = sMonfernoLevelUpLearnset,

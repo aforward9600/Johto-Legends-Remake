@@ -260,7 +260,7 @@
 #define P_FAMILY_JIRACHI                 P_GEN_3_POKEMON
 #define P_FAMILY_DEOXYS                  P_GEN_3_POKEMON
 
-#define P_FAMILY_TURTWIG                 P_GEN_4_POKEMON
+#define P_FAMILY_KOTORA                  P_GEN_4_POKEMON
 #define P_FAMILY_CHIMCHAR                P_GEN_4_POKEMON
 #define P_FAMILY_PIPLUP                  P_GEN_4_POKEMON
 #define P_FAMILY_STARLY                  P_GEN_4_POKEMON

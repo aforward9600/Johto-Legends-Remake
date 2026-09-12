@@ -14250,20 +14250,20 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_DEOXYS
 
-#if P_FAMILY_TURTWIG
-    const u32 gMonFrontPic_Turtwig[] = INCBIN_U32("graphics/pokemon/turtwig/anim_front.4bpp.smol");
-    const u16 gMonPalette_Turtwig[] = INCBIN_U16("graphics/pokemon/turtwig/normal.gbapal");
-    const u32 gMonBackPic_Turtwig[] = INCBIN_U32("graphics/pokemon/turtwig/back.4bpp.smol");
-    const u16 gMonShinyPalette_Turtwig[] = INCBIN_U16("graphics/pokemon/turtwig/shiny.gbapal");
-    const u8 gMonIcon_Turtwig[] = INCBIN_U8("graphics/pokemon/turtwig/icon.4bpp");
+#if P_FAMILY_KOTORA
+    const u32 gMonFrontPic_Kotora[] = INCBIN_U32("graphics/pokemon/kotora/anim_front.4bpp.smol");
+    const u16 gMonPalette_Kotora[] = INCBIN_U16("graphics/pokemon/kotora/normal.gbapal");
+    const u32 gMonBackPic_Kotora[] = INCBIN_U32("graphics/pokemon/kotora/back.4bpp.smol");
+    const u16 gMonShinyPalette_Kotora[] = INCBIN_U16("graphics/pokemon/kotora/shiny.gbapal");
+    const u8 gMonIcon_Kotora[] = INCBIN_U8("graphics/pokemon/kotora/icon.4bpp");
 #if P_FOOTPRINTS
-    const u8 gMonFootprint_Turtwig[] = INCBIN_U8("graphics/pokemon/turtwig/footprint.1bpp");
+    const u8 gMonFootprint_Kotora[] = INCBIN_U8("graphics/pokemon/kotora/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #if OW_POKEMON_OBJECT_EVENTS
-    const u32 gObjectEventPic_Turtwig[] = INCBIN_COMP("graphics/pokemon/turtwig/overworld.4bpp");
+    const u32 gObjectEventPic_Kotora[] = INCBIN_COMP("graphics/pokemon/kotora/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    const u16 gOverworldPalette_Turtwig[] = INCBIN_U16("graphics/pokemon/turtwig/overworld_normal.gbapal");
-    const u16 gShinyOverworldPalette_Turtwig[] = INCBIN_U16("graphics/pokemon/turtwig/overworld_shiny.gbapal");
+    const u16 gOverworldPalette_Kotora[] = INCBIN_U16("graphics/pokemon/kotora/overworld_normal.gbapal");
+    const u16 gShinyOverworldPalette_Kotora[] = INCBIN_U16("graphics/pokemon/kotora/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
@@ -14298,7 +14298,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u16 gShinyOverworldPalette_Torterra[] = INCBIN_U16("graphics/pokemon/torterra/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_FAMILY_TURTWIG
+#endif //P_FAMILY_KOTORA
 
 #if P_FAMILY_CHIMCHAR
     const u32 gMonFrontPic_Chimchar[] = INCBIN_U32("graphics/pokemon/chimchar/anim_front.4bpp.smol");

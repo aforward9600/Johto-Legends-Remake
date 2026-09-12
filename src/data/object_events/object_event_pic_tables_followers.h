@@ -3073,9 +3073,9 @@ static const struct SpriteFrameImage sPicTable_DeoxysSpeed[] = {
 };
 #endif //P_FAMILY_DEOXYS
 
-#if P_FAMILY_TURTWIG
-static const struct SpriteFrameImage sPicTable_Turtwig[] = {
-    overworld_ascending_frames(gObjectEventPic_Turtwig, 4, 4),
+#if P_FAMILY_KOTORA
+static const struct SpriteFrameImage sPicTable_Kotora[] = {
+    overworld_ascending_frames(gObjectEventPic_Kotora, 4, 4),
 };
 static const struct SpriteFrameImage sPicTable_Grotle[] = {
     overworld_ascending_frames(gObjectEventPic_Grotle, 4, 4),
@@ -3083,7 +3083,7 @@ static const struct SpriteFrameImage sPicTable_Grotle[] = {
 static const struct SpriteFrameImage sPicTable_Torterra[] = {
     overworld_ascending_frames(gObjectEventPic_Torterra, 4, 4),
 };
-#endif //P_FAMILY_TURTWIG
+#endif //P_FAMILY_KOTORA
 
 #if P_FAMILY_CHIMCHAR
 static const struct SpriteFrameImage sPicTable_Chimchar[] = {

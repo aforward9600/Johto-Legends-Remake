@@ -3,75 +3,75 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 {
 #endif
 
-#if P_FAMILY_TURTWIG
-    [SPECIES_TURTWIG] =
+#if P_FAMILY_KOTORA
+    [SPECIES_KOTORA] =
     {
         .dexNotRequired = TRUE,
-        .baseHP        = 55,
-        .baseAttack    = 68,
-        .baseDefense   = 64,
-        .baseSpeed     = 31,
-        .baseSpAttack  = 45,
-        .baseSpDefense = 55,
-        .types = MON_TYPES(TYPE_GRASS),
-        .catchRate = 45,
-        .expYield = 64,
-        .evYield_Attack = 1,
-        .genderRatio = PERCENT_FEMALE(12.5),
+        .baseHP        = 80,
+        .baseAttack    = 55,
+        .baseDefense   = 50,
+        .baseSpeed     = 40,
+        .baseSpAttack  = 55,
+        .baseSpDefense = 60,
+        .types = MON_TYPES(TYPE_ELECTRIC),
+        .catchRate = 190,
+        .expYield = 61,
+        .evYield_HP = 1,
+        .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
         .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
-        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_SHELL_ARMOR },
-        .bodyColor = BODY_COLOR_GREEN,
-        .speciesName = _("TURTWIG"),
-        .cryId = CRY_TURTWIG,
-        .natDexNum = NATIONAL_DEX_TURTWIG,
-        .categoryName = _("Tiny Leaf"),
-        .height = 4,
-        .weight = 102,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_FIELD),
+        .abilities = { ABILITY_VOLT_ABSORB, ABILITY_INTIMIDATE, ABILITY_MOXIE },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Kotora"),
+        .cryId = CRY_TEPIG,
+        .natDexNum = NATIONAL_DEX_KOTORA,
+        .categoryName = _("Rotund"),
+        .height = 7,
+        .weight = 210,
         .description = COMPOUND_STRING(
-            "The shell on its back is made of soil. \n"
-            "On a very healthy Turtwig, the shell \n"
-            "should feel moist. The leaf on its head\n"
-            "wilts if it is thirsty."),
+            "When charged up, its fur crackles like \n"
+            "lightning. If its tail is standing on \n"
+            "end, it is about to zap, so caution is \n"
+            "advised."),
         .pokemonScale = 491,
-        .pokemonOffset = 20,
+        .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
-        .frontPic = gMonFrontPic_Turtwig,
-        .frontPicSize = MON_COORDS_SIZE(40, 48),
-        .frontPicYOffset = 11,
+        .frontPic = gMonFrontPic_Kotora,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 6,
         .frontAnimFrames = ANIM_FRAMES(
             ANIMCMD_FRAME(0, 15),
-            ANIMCMD_FRAME(1, 15),
-            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 35),
+            ANIMCMD_FRAME(0, 9),
         ),
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .backPic = gMonBackPic_Turtwig,
-        .backPicSize = MON_COORDS_SIZE(48, 56),
-        .backPicYOffset = 6,
-        .backAnimId = BACK_ANIM_H_SLIDE,
-        .palette = gMonPalette_Turtwig,
-        .shinyPalette = gMonShinyPalette_Turtwig,
-        .iconSprite = gMonIcon_Turtwig,
-        .iconPalIndex = 1,
+        .backPic = gMonBackPic_Kotora,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 11,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
+        .palette = gMonPalette_Kotora,
+        .shinyPalette = gMonShinyPalette_Kotora,
+        .iconSprite = gMonIcon_Kotora,
+        .iconPalIndex = 2,
         .pokemonJumpType = PKMN_JUMP_TYPE_SLOW,
         SHADOW(1, 2, SHADOW_SIZE_S)
-        FOOTPRINT(Turtwig)
+        FOOTPRINT(Kotora)
         OVERWORLD(
-            sPicTable_Turtwig,
+            sPicTable_Kotora,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
             sAnimTable_Following,
-            gOverworldPalette_Turtwig,
-            gShinyOverworldPalette_Turtwig
+            gOverworldPalette_Kotora,
+            gShinyOverworldPalette_Kotora
         )
-        .levelUpLearnset = sTurtwigLevelUpLearnset,
-        .teachableLearnset = sTurtwigTeachableLearnset,
-        .eggMoveLearnset = sTurtwigEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_GROTLE}),
+        .levelUpLearnset = sKotoraLevelUpLearnset,
+        .teachableLearnset = sKotoraTeachableLearnset,
+        .eggMoveLearnset = sKotoraEggMoveLearnset,
+//        .evolutions = EVOLUTION({EVO_LEVEL, 31, SPECIES_RAITORA}),
     },
 
     [SPECIES_GROTLE] =
@@ -218,7 +218,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .levelUpLearnset = sTorterraLevelUpLearnset,
         .teachableLearnset = sTorterraTeachableLearnset,
     },
-#endif //P_FAMILY_TURTWIG
+#endif //P_FAMILY_KOTORA
 
 #if P_FAMILY_CHIMCHAR
     [SPECIES_CHIMCHAR] =

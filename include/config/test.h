@@ -446,8 +446,8 @@
 #undef P_FAMILY_DEOXYS
 #define P_FAMILY_DEOXYS                  TRUE
 
-#undef P_FAMILY_TURTWIG
-#define P_FAMILY_TURTWIG                 TRUE
+#undef P_FAMILY_KOTORA
+#define P_FAMILY_KOTORA                  TRUE
 #undef P_FAMILY_CHIMCHAR
 #define P_FAMILY_CHIMCHAR                TRUE
 #undef P_FAMILY_PIPLUP
